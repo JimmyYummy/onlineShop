@@ -12,27 +12,26 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "salesorder")
-public class SalesOrder implements Serializable{
+public class SalesOrder implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -6571020025726257848L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	@OneToOne
 	private Cart cart;
-	
+
 	@OneToOne
 	private Customer customer;
-	
-	@OneToOne
-	private BillingAddress billingAddress;
-	
+
 	@OneToOne
 	private ShippingAddress shippingAddress;
 
-	//--------------------------
+	@OneToOne
+	private BillingAddress billingAddress;
+
 	public int getId() {
 		return id;
 	}
@@ -57,14 +56,6 @@ public class SalesOrder implements Serializable{
 		this.customer = customer;
 	}
 
-	public BillingAddress getBillingAddress() {
-		return billingAddress;
-	}
-
-	public void setBillingAddress(BillingAddress billingAddress) {
-		this.billingAddress = billingAddress;
-	}
-
 	public ShippingAddress getShippingAddress() {
 		return shippingAddress;
 	}
@@ -72,6 +63,12 @@ public class SalesOrder implements Serializable{
 	public void setShippingAddress(ShippingAddress shippingAddress) {
 		this.shippingAddress = shippingAddress;
 	}
-	
-	
+
+	public BillingAddress getBillingAddress() {
+		return billingAddress;
+	}
+
+	public void setBillingAddress(BillingAddress billingAddress) {
+		this.billingAddress = billingAddress;
+	}
 }

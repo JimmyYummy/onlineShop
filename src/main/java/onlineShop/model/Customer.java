@@ -16,38 +16,34 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "customer")
-public class Customer implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class Customer implements Serializable {
+	
+	private static final long serialVersionUID = 2652327633296064143L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
 	private String firstName;
-	
 	private String lastName;
-	
 	private String customerPhone;
-	
+
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "shippingAddressId")
 	private ShippingAddress shippingAddress;
-	
+
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "billingAddressId")
 	private BillingAddress billingAddress;
-	
+
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "userId")
 	private User user;
-	
+
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "cartId")
 	@JsonIgnore
 	private Cart cart;
 
-	//-------------------
 	public int getId() {
 		return id;
 	}
@@ -111,5 +107,4 @@ public class Customer implements Serializable{
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	
 }

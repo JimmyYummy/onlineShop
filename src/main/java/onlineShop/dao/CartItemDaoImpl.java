@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,44 +11,51 @@ import onlineShop.model.Cart;
 import onlineShop.model.CartItem;
 
 @Repository
-public class CartItemImpl implements CartItemDao {
-
+public class CartItemDaoImpl implements CartItemDao {
 	@Autowired
-	SessionFactory sessionFactory;
-	
+	private SessionFactory sessionFactory;
+
 	public void addCartItem(CartItem cartItem) {
 		Session session = null;
+
 		try {
 			session = sessionFactory.openSession();
-			Transaction tx = session.beginTransaction();
+			session.beginTransaction();
 			session.saveOrUpdate(cartItem);
-			tx.commit();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
-			if (session != null) session.close();
+			if (session != null) {
+				session.close();
+			}
 		}
 	}
 
-	public void removeCartItem(int cartItemId) {
+	public void removeCartItem(int CartItemId) {
 		Session session = null;
 		try {
 			session = sessionFactory.openSession();
-			CartItem cartItem= session.get(CartItem.class, cartItemId);
+			CartItem cartItem = (CartItem) session.get(CartItem.class, CartItemId);
 			Cart cart = cartItem.getCart();
-			List<CartItem> itemList = cart.getCartItem();
-			itemList.remove(cartItem);
-			Transaction tx = session.beginTransaction();
+			List<CartItem> cartItems = cart.getCartItem();
+			cartItems.remove(cartItem);
+			session.beginTransaction();
 			session.delete(cartItem);
-			tx.commit();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
-			if (session != null) session.close();
+			if(session != null) {
+				session.close();
+			}
 		}
 	}
 
 	public void removeAllCartItems(Cart cart) {
-		List<CartItem> itemList = cart.getCartItem();
-		for (CartItem cartItem : itemList) {
+		List<CartItem> cartItems = cart.getCartItem();
+		for (CartItem cartItem : cartItems) {
 			removeCartItem(cartItem.getId());
 		}
 	}
-
 }

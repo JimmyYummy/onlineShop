@@ -17,39 +17,37 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "product")
-public class Product implements Serializable{
+public class Product implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 5186013952828648626L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	@Column(name = "category")
 	private String productCategory;
-	
+
 	@Column(name = "description")
 	private String productDescription;
-	
+
 	@Column(name = "manufacturer")
 	private String productManufacturer;
-	
+
+	@NotEmpty(message = "Product Name is mandatory")
 	@Column(name = "name")
-	@NotEmpty(message = "The product must have a name")
 	private String productName;
-	
+
+	@NotNull(message = "Please provide some price")
 	@Column(name = "price")
-	@NotNull(message = "the product must have a price")
-	@Min(value = 0, message = "the price must be non-negative")
 	private double productPrice;
-	
+
 	@Column(name = "unit")
 	private String unitStock;
 	
 	@Transient
 	private MultipartFile productImage;
 
-	//---------------------
 	public int getId() {
 		return id;
 	}
@@ -113,5 +111,4 @@ public class Product implements Serializable{
 	public void setProductImage(MultipartFile productImage) {
 		this.productImage = productImage;
 	}
-
 }

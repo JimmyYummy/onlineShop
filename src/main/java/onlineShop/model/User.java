@@ -12,25 +12,21 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "user")
-public class User implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+@Table(name = "users")
+public class User implements Serializable {
+	
+	private static final long serialVersionUID = 2681531852204068105L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
 	private String emailId;
-	
 	private String password;
-	
 	private boolean enabled;
-	
+
 	@OneToOne(mappedBy = "user")
 	private Customer customer;
 
-	//--------------------
 	public int getId() {
 		return id;
 	}
@@ -70,5 +66,6 @@ public class User implements Serializable{
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	
 	
 }

@@ -25,4 +25,5 @@ public class CartItemServiceImpl implements CartItemService {
 	public void removeAllCartItems(Cart cart) {
 		cartItemDao.removeAllCartItems(cart);
 	}
+
 }

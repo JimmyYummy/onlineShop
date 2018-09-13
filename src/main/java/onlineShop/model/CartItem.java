@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -14,26 +15,25 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "cartitem")
-public class CartItem implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class CartItem implements Serializable {
+	
+	private static final long serialVersionUID = -2455760938054036364L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	private int quantity;
-	
+
 	private double price;
-	
+
 	@OneToOne
 	private Product product;
-	
+
 	@ManyToOne
 	@JsonIgnore
 	private Cart cart;
-	
-	//--------------------
+
 	public int getId() {
 		return id;
 	}
@@ -74,4 +74,6 @@ public class CartItem implements Serializable{
 		this.cart = cart;
 	}
 	
+	
+
 }

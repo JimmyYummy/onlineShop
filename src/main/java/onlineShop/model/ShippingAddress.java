@@ -6,37 +6,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "shippingAddress")
-public class ShippingAddress implements Serializable{
+public class ShippingAddress implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 7551999649936522523L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
 	private String address;
-	
 	private String city;
-	
 	private String state;
-	
 	private String zipcode;
-	
 	private String country;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "customer")
 	@OneToOne(mappedBy = "shippingAddress")
 	private Customer customer;
-	
-	//------------------------
+
 	public int getId() {
 		return id;
 	}
@@ -92,5 +82,5 @@ public class ShippingAddress implements Serializable{
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-
+	
 }

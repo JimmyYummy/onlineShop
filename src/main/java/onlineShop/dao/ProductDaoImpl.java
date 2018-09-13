@@ -12,7 +12,6 @@ import onlineShop.model.Product;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
-	
 	@Autowired
 	private SessionFactory sessionFactory;
 

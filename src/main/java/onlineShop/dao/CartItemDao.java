@@ -7,7 +7,7 @@ public interface CartItemDao {
 	
 	void addCartItem(CartItem cartItem);
 	
-	void removeCartItem(int cartItemId);
+	void removeCartItem(int CartItemId);
 	
 	void removeAllCartItems(Cart cart);
 }
