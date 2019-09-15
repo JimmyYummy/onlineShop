@@ -22,12 +22,11 @@
     <div class="footer-left">
 
         <p class="footer-links">
-            <a href="<c:url value="/index"/>">Home</a> ·
-            <a href="<c:url value="/aboutus"/>">About Us</a> ·
+            <a href="<c:url value="/index"/>">Home</a> Â·
+            <a href="<c:url value="/aboutus"/>">About Us</a> Â·
             <a href="<c:url value="/getAllProducts" />">Product List</a>
         </p>
 
-        <p>Created by LaiOffer &copy; 2018</p>
     </div>
 
 </footer>
